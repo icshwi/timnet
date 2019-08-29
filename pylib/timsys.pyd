@@ -1,5 +1,5 @@
 
-msg2meta("INFO params file loaded ", msg_list=meta_list)
+print("INFO", "timsysd loaded")
 
 TIMSYS = {
     "MTCA5U-EVG": {"type": "EVM", "value": 0},
