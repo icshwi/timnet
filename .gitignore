@@ -1,0 +1,22 @@
+#Exluded directories
+
+.DS_Store
+**/undo
+
+#Excluded files
+
+*.org
+*.swp
+*.pyc
+*.org
+*COMMIT_EDITMSG
+.netrwhist
+*.list
+core.*
+*.xlsx
+*.csv
+__pycache__
+.idea
+draft/
+*.log
+*.timnet
