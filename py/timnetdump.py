@@ -10,16 +10,9 @@ from genericepics import *
 # Program variables
 
 # CONFIGURATION
-INPUTFILE = "timsys_inventory.json"
+INPUTFILE = "timsys_inventory_dev.json"
 OUTPUTFILE = "timsys.json"
 DIRFILE = "json/"
-# Test object
-timsys_dev = {
-    "MTCA5U-EVG": {},
-    "MTCA5U-EVR": {},
-    "MTCA5U-EVR1": {}
-    # "MTCA5U-EVR2",
-}
 
 timsyspvs = {
     "ID": {"EVR": "DC-ID-I", "EVM": "FCT-ID-I"},
@@ -104,11 +97,8 @@ def main(args=""):
     # root = __file__.replace(os.path.basename(__file__), "")
     # root = "."
 
-    if "timsysd" in args:
-        with open(DIRFILE+INPUTFILE) as infile:
-            timsys_json = json.load(infile)
-    else:
-        timsys_json = timsys_dev
+    with open(DIRFILE+INPUTFILE) as infile:
+        timsys_json = json.load(infile)
 
     for sys_str in timsys_json:
         tim_net_id_read(sys_str, timsys_json)
