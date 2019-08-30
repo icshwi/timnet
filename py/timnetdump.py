@@ -15,10 +15,10 @@ OUTPUTFILE = "timsys.json"
 DIRFILE = "json/"
 # Test object
 timsys_dev = {
-    "MTCA5U-EVG": {"type": "EVM"},
-    "MTCA5U-EVR": {"type": "EVR"},
-    "MTCA5U-EVR1": {"type": "EVR"},
-    # "MTCA5U-EVR2": {"type": "EVR", "value": 0},
+    "MTCA5U-EVG": {},
+    "MTCA5U-EVR": {},
+    "MTCA5U-EVR1": {}
+    # "MTCA5U-EVR2",
 }
 
 timsyspvs = {
@@ -26,6 +26,12 @@ timsyspvs = {
     "HwType": {"EVR": "HwType-I", "EVM": ""},
     "FwVer": {"EVR": "FwVer-I", "EVM": "FwVer-I"},
     "SwVer": {"EVR": "SwVer-I", "EVM": "SwVer-I"},
+    "Ena-Sel": {"EVR": "Ena-Sel", "EVM": "Enable-Sel"},
+    "Pll-Sts": {"EVR": "Pll-Sts", "EVM": "EvtClk-Pll-Sts"},
+    "Time": {"EVR": "Time-I", "EVM": ""},
+    "Time-Valid": {"EVR": "Time-Valid-Sts", "EVM": ""},
+    "Pos": {"EVR": "Pos-I", "EVM": ""},
+
     "SFP-T": {"EVR": "SFP-T-I", "EVM": ""},
     "SFP1-T": {"EVR": "", "EVM": "SFP1-T-I"},
     "SFP2-T": {"EVR": "", "EVM": "SFP2-T-I"},
@@ -35,6 +41,7 @@ timsyspvs = {
     "SFP6-T": {"EVR": "", "EVM": "SFP6-T-I"},
     "SFP7-T": {"EVR": "", "EVM": "SFP7-T-I"},
     "SFP8-T": {"EVR": "", "EVM": "SFP8-T-I"},
+    
     "SFP-Pwr-RX": {"EVR": "SFP-Pwr-RX-I", "EVM": ""},
     "SFP1-Pwr-RX": {"EVR": "", "EVM": "SFP1-Pwr-RX-I"},
     "SFP2-Pwr-RX": {"EVR": "", "EVM": "SFP2-Pwr-RX-I"},
@@ -44,6 +51,7 @@ timsyspvs = {
     "SFP6-Pwr-RX": {"EVR": "", "EVM": "SFP6-Pwr-RX-I"},
     "SFP7-Pwr-RX": {"EVR": "", "EVM": "SFP7-Pwr-RX-I"},
     "SFP8-Pwr-RX": {"EVR": "", "EVM": "SFP8-Pwr-RX-I"},
+
     "SFP-Pwr-TX": {"EVR": "SFP-Pwr-TX-I", "EVM": ""},
     "SFP1-Pwr-TX": {"EVR": "", "EVM": "SFP1-Pwr-TX-I"},
     "SFP2-Pwr-TX": {"EVR": "", "EVM": "SFP2-Pwr-TX-I"},
@@ -53,6 +61,16 @@ timsyspvs = {
     "SFP6-Pwr-TX": {"EVR": "", "EVM": "SFP6-Pwr-TX-I"},
     "SFP7-Pwr-TX": {"EVR": "", "EVM": "SFP7-Pwr-TX-I"},
     "SFP8-Pwr-TX": {"EVR": "", "EVM": "SFP8-Pwr-TX-I"},
+
+    "Link-Sts": {"EVR": "Link-Sts", "EVM": "U:Link-Sts"},
+    "FCT-Link1-Sts": {"EVR": "", "EVM": "FCT-Link1-Sts"},
+    "FCT-Link2-Sts": {"EVR": "", "EVM": "FCT-Link2-Sts"},
+    "FCT-Link3-Sts": {"EVR": "", "EVM": "FCT-Link3-Sts"},
+    "FCT-Link4-Sts": {"EVR": "", "EVM": "FCT-Link4-Sts"},
+    "FCT-Link5-Sts": {"EVR": "", "EVM": "FCT-Link5-Sts"},
+    "FCT-Link6-Sts": {"EVR": "", "EVM": "FCT-Link6-Sts"},
+    "FCT-Link7-Sts": {"EVR": "", "EVM": "FCT-Link7-Sts"},
+    "FCT-Link8-Sts": {"EVR": "", "EVM": "FCT-Link8-Sts"},
 }
 
 # START
@@ -60,15 +78,24 @@ timsyspvs = {
 # Add globals into meta list
 
 
-def tim_net_id_read(pv_str, timsys_obj):
+def tim_net_id_read(sys_str, timsys_obj):
     for timpv_str in timsyspvs:
-        if timsyspvs[timpv_str][timsys_obj[pv_str]["type"]] != "":
-            pv_val_tmp = epics.PV(pv_str + ":" + timsyspvs[timpv_str][timsys_obj[pv_str]["type"]]).value
+        if "EVR" in sys_str:
+            dev_type = "EVR"
+        else:
+            dev_type = "EVM"
+
+        pv_str_tmp = timsyspvs[timpv_str][dev_type]
+        if pv_str_tmp != "":
+            if ':' in pv_str_tmp:
+                pv_val_tmp = epics.PV(sys_str + pv_str_tmp).value
+            else:
+                pv_val_tmp = epics.PV(sys_str + ":" + pv_str_tmp).value
         else:
             pv_val_tmp = ""
 
         if pv_val_tmp != "":
-            timsys_obj[pv_str].update({timpv_str: pv_val_tmp})
+            timsys_obj[sys_str].update({timpv_str: pv_val_tmp})
 
 
 def main(args=""):
@@ -83,8 +110,8 @@ def main(args=""):
     else:
         timsys_json = timsys_dev
 
-    for pv_str in timsys_json:
-        tim_net_id_read(pv_str, timsys_json)
+    for sys_str in timsys_json:
+        tim_net_id_read(sys_str, timsys_json)
 
     with open(DIRFILE+OUTPUTFILE, 'w') as outfile:
         json.dump(timsys_json, outfile)
