@@ -75,14 +75,19 @@ def tim_net_id_read(sys_str, timsys_obj):
         pv_str_tmp = timsyspvs[timpv_str][dev_type]
         if pv_str_tmp != "":
             if ':' in pv_str_tmp:
-                pv_val_tmp = epics.PV(sys_str + pv_str_tmp).value
+                eps_req_str = sys_str + pv_str_tmp
             else:
-                pv_val_tmp = epics.PV(sys_str + ":" + pv_str_tmp).value
+                eps_req_str = sys_str + ":" + pv_str_tmp
+            pv_val_tmp = epics.PV(eps_req_str, connection_timeout=1).value
         else:
             pv_val_tmp = ""
 
         if pv_val_tmp != "":
-            timsys_obj[sys_str].update({timpv_str: pv_val_tmp})
+            if pv_val_tmp is not None:
+                timsys_obj[sys_str].update({timpv_str: pv_val_tmp})
+            else:
+                timsys_obj[sys_str].update({"state": "FAULT"})
+                break
 
 
 def main(args=""):
