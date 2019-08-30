@@ -1,8 +1,0 @@
-
-print("INFO", "timsysd loaded")
-
-TIMSYS = {
-    "MTCA5U-EVG": {"type": "EVM", "value": 0},
-    "MTCA5U-EVR": {"type": "EVR", "value": 0},
-    "MTCA5U-EVR1": {"type": "EVR", "value": 0},
-}

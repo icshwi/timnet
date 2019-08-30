@@ -1,0 +1,13 @@
+
+{  
+   "MTCA5U-EVG":{  
+      "type":"EVM"
+   },
+   "MTCA5U-EVR":{  
+      "type":"EVR"
+   },
+   "MTCA5U-EVR1":{  
+      "type":"EVR"
+   }
+
+}
