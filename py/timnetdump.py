@@ -8,12 +8,6 @@ from genericepics import *
 
 # =========================================
 # Program variables
-
-# CONFIGURATION
-INPUTFILE = "timsys_inventory_dev.json"
-OUTPUTFILE = "timsys.json"
-DIRFILE = "json/"
-
 timsyspvs = {
     "ID": {"EVR": "DC-ID-I", "EVM": "FCT-ID-I"},
     "HwType": {"EVR": "HwType-I", "EVM": ""},
@@ -97,13 +91,20 @@ def main(args=""):
     # root = __file__.replace(os.path.basename(__file__), "")
     # root = "."
 
-    with open(DIRFILE+INPUTFILE) as infile:
+    input_file = "timsys_inventory.json"
+    if "dev" in args:
+        input_file = input_file.replace(".json", "_dev.json")
+
+    output_file = "timsys.json"
+    dir_branch = "json/"
+
+    with open(dir_branch+input_file) as infile:
         timsys_json = json.load(infile)
 
     for sys_str in timsys_json:
         tim_net_id_read(sys_str, timsys_json)
 
-    with open(DIRFILE+OUTPUTFILE, 'w') as outfile:
+    with open(dir_branch+output_file, 'w') as outfile:
         json.dump(timsys_json, outfile)
 
     print(timsys_json)

@@ -56,7 +56,7 @@ msg2meta("INFO time_stamp_st " + str(time_stamp_st), msg_list=meta_list)
 
 def main():
     if param_dump:
-        timnetdump.main()
+        timnetdump.main("dev")
         #timnetdump.main("timsysd")
     elif param_plot:
         timnetplot.main()
