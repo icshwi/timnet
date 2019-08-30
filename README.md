@@ -9,6 +9,7 @@ MRF hardware based network toolkit.
 
 # Requirements
 * python 3
+* pyepics, anytree
 
 # Usage
 * Use "--help or -h" for all parameters.

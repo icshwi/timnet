@@ -41,7 +41,7 @@ timsyspvs = {
     "SFP6-T": {"EVR": "", "EVM": "SFP6-T-I"},
     "SFP7-T": {"EVR": "", "EVM": "SFP7-T-I"},
     "SFP8-T": {"EVR": "", "EVM": "SFP8-T-I"},
-    
+
     "SFP-Pwr-RX": {"EVR": "SFP-Pwr-RX-I", "EVM": ""},
     "SFP1-Pwr-RX": {"EVR": "", "EVM": "SFP1-Pwr-RX-I"},
     "SFP2-Pwr-RX": {"EVR": "", "EVM": "SFP2-Pwr-RX-I"},
