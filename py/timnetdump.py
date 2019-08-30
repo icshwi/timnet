@@ -33,12 +33,13 @@ def tim_net_id_read(pv_str, timsys_obj):
 def main(args=""):
     print("INFO", __file__)
     # Get the script root location
-    root = __file__.replace(os.path.basename(__file__), "")
+    # root = __file__.replace(os.path.basename(__file__), "")
+    # root = "."
 
     if "timsysd" in args:
-        exec(open(root+"/timsys.pyd").read())
+        exec(open("pyd/timsys.pyd").read())
 
-    output = open("output.timnet", "w")
+    output = open("out/out.timnet", "w")
     for pv_str in TIMSYS:
         tim_net_id_read(pv_str, TIMSYS)
 

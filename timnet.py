@@ -1,37 +1,28 @@
 #!/usr/bin/env python3
 
+# System modules
 import sys
 import os
-
-# System test
-sys.path.append(os.getcwd())
-sys.path.append(os.getcwd()+"/pylib")
-print(os.getcwd())
-print("INFO Python Environment")
-print(sys.version)
-
-if sys.version_info[0] < 3:
-    raise Exception("ERROR Python 3 required")
-
-# ---------------------------------------------
-# system modules
-import time
 import signal
-import os
 import psutil
 
-# epics modules
+# Epics modules
 import epics
-print(epics.ca.find_libca())
 
-# local functions
+# Local modules
+sys.path.append(os.getcwd())
+sys.path.append(os.getcwd() + "/py")
 from genericlibs import *
 from genericepics import *
 from menu import *
 
-# local runtime functions
+# Local runtime modules
 import timnetdump
 # =========================================
+# Assure py3
+assure_py3()
+# Check epics
+print(epics.ca.find_libca())
 
 # Crush handler
 process = psutil.Process(os.getpid())
@@ -41,7 +32,7 @@ process = psutil.Process(os.getpid())
 def signal_term_handler(signal=None, frame=None):
     print("ERROR SIGTERM")
     print("ERROR ", sys.exc_info())
-    print("ERROR process.memory_info().rss " + str(process.memory_info()))
+    print("ERROR process.memory_info().rss ", process.memory_info())
     sys.exit(0)
 
 
@@ -51,7 +42,6 @@ signal.signal(signal.SIGTERM, signal_term_handler)
 
 # Get the cli params
 cli_params = menu()
-param_file = cli_params["params"]
 param_dump = cli_params["dump"]
 # Get the start time
 time_stamp_st = time2iso()
@@ -68,8 +58,9 @@ def main():
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except:
-        signal_term_handler()
+    main()
+    #try:
+    #    main()
+    #except:
+    #    signal_term_handler()
 

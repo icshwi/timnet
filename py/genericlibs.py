@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
 
-import epics
 import datetime
-import math
 import sys
-import socket
+import os
+#import socket
+#import math
+#import epics
+
+
+def assure_py3():
+    # System test
+    print(os.getcwd())
+    print("INFO Python Environment", sys.version)
+
+    if sys.version_info[0] < 3:
+        raise Exception("ERROR Python 3 required")
 
 
 def time2iso():
