@@ -7,9 +7,6 @@ MRF hardware based network toolkit.
 # Capabilities
 
 
-# Requirements
-* python 3
-* pyepics, anytree
-
 # Usage
+* Raw usage: python -m timnet
 * Use "--help or -h" for all parameters.

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import os
 import json
 # local functions
@@ -8,7 +10,7 @@ from genericepics import *
 
 # =========================================
 # Program variables
-timsyspvs = {
+netpvs = {
     "ID": {"EVR": "DC-ID-I", "EVM": "FCT-ID-I"},
     "HwType": {"EVR": "HwType-I", "EVM": ""},
     "FwVer": {"EVR": "FwVer-I", "EVM": "FwVer-I"},
@@ -65,28 +67,28 @@ timsyspvs = {
 # Add globals into meta list
 
 
-def tim_net_id_read(sys_str, timsys_obj):
-    for timpv_str in timsyspvs:
-        if "EVR" in sys_str:
+def tim_net_id_read(ioc_str, tim_net_json):
+    for pv_str in netpvs:
+        if "EVR" in ioc_str:
             dev_type = "EVR"
         else:
             dev_type = "EVM"
 
-        pv_str_tmp = timsyspvs[timpv_str][dev_type]
+        pv_str_tmp = netpvs[pv_str][dev_type]
         if pv_str_tmp != "":
             if ':' in pv_str_tmp:
-                eps_req_str = sys_str + pv_str_tmp
+                eps_req_str = ioc_str + pv_str_tmp
             else:
-                eps_req_str = sys_str + ":" + pv_str_tmp
+                eps_req_str = ioc_str + ":" + pv_str_tmp
             pv_val_tmp = epics.PV(eps_req_str, connection_timeout=1).value
         else:
             pv_val_tmp = ""
 
         if pv_val_tmp != "":
             if pv_val_tmp is not None:
-                timsys_obj[sys_str].update({timpv_str: pv_val_tmp})
+                tim_net_json[ioc_str].update({pv_str: pv_val_tmp})
             else:
-                timsys_obj[sys_str].update({"state": "FAULT"})
+                tim_net_json[ioc_str].update({"state": "FAULT"})
                 break
 
 
@@ -96,23 +98,24 @@ def main(args=""):
     # root = __file__.replace(os.path.basename(__file__), "")
     # root = "."
 
-    input_file = "timsys_inventory.json"
+    input_file = "input.json"
+    output_file = "output.json"
+    json_dir = "json/"
+    
     if "dev" in args:
         input_file = input_file.replace(".json", "_dev.json")
+        output_file = output_file.replace(".json", "_dev.json")
 
-    output_file = "timsys.json"
-    dir_branch = "json/"
+    with open(json_dir+input_file) as infile:
+        tim_net_json = json.load(infile)
 
-    with open(dir_branch+input_file) as infile:
-        timsys_json = json.load(infile)
+    for ioc_str in tim_net_json:
+        tim_net_id_read(ioc_str, tim_net_json)
 
-    for sys_str in timsys_json:
-        tim_net_id_read(sys_str, timsys_json)
+    with open(json_dir+output_file, 'w') as outfile:
+        json.dump(tim_net_json, outfile)
 
-    with open(dir_branch+output_file, 'w') as outfile:
-        json.dump(timsys_json, outfile)
-
-    print(timsys_json)
+    print(tim_net_json)
 
 
 if __name__ == '__main__':

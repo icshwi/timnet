@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 # System modules
 import sys
@@ -10,8 +11,9 @@ import psutil
 import epics
 
 # Local modules
-sys.path.append(os.getcwd())
-sys.path.append(os.getcwd() + "/py")
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+#sys.path.append(os.getcwd())
+
 from genericlibs import *
 from genericepics import *
 from menu import *
