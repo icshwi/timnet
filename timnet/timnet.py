@@ -21,18 +21,13 @@ def main():
     cli_params = menu()
     param_net = cli_params["net"]
     param_plot = cli_params["plot"]
-    # Get the start time
-    time_stamp_st = time2iso()
     # declare meta list to log the program progress
 
-    input_file = "input.json"
-    output_file = "output.json"
-    json_dir = "json/"
-    if "dev" in cli_params:
-        input_file = input_file.replace(".json", "_dev.json")
-        output_file = output_file.replace(".json", "_dev.json")
+    interface = {"dir": "json/", "inventory": "inventory.json", "network": "network.json", "plot": "plot.json"}
 
-    interface = {"dir": json_dir, "input": input_file, "output": output_file}
+    if "dev" in cli_params:
+        for el in interface:
+            interface[el] = interface[el].replace(".json", "_dev.json")
 
     logging.info("cli_params " + str(cli_params))
     logging.info("interface " + str(interface))

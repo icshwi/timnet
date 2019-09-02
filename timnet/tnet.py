@@ -108,7 +108,7 @@ def main(args={}, interface={}):
     with open(interface["dir"]+interface["output"], 'w') as outfile:
         json.dump(tim_net_json, outfile)
 
-    print(tim_net_json)
+    logging.info(tim_net_json)
 
 
 if __name__ == '__main__':
