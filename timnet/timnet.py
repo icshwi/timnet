@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+import logging
 from genericlibs import *
 from genericepics import *
 from menu import *
@@ -12,10 +12,11 @@ import tplot
 
 
 def main():
+    logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
     # Assure py3
     assure_py3()
     # Check epics
-    print("Epics", epics.ca.find_libca())
+    logging.info("epics " + str(epics.ca.find_libca()))
     # Get the cli params
     cli_params = menu()
     param_net = cli_params["net"]
@@ -23,10 +24,6 @@ def main():
     # Get the start time
     time_stamp_st = time2iso()
     # declare meta list to log the program progress
-    meta_list = []
-
-    # Add globals into meta list
-    msg2meta("INFO time_stamp_st " + str(time_stamp_st), msg_list=meta_list)
 
     input_file = "input.json"
     output_file = "output.json"
@@ -37,6 +34,8 @@ def main():
 
     interface = {"dir": json_dir, "input": input_file, "output": output_file}
 
+    logging.info("cli_params " + str(cli_params))
+    logging.info("interface " + str(interface))
     if param_net:
         tnet.main(cli_params, interface)
     if param_plot:

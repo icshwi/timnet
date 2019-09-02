@@ -3,6 +3,7 @@
 
 import os
 import json
+import logging
 # local functions
 from genericlibs import *
 from genericepics import *
@@ -93,7 +94,7 @@ def tim_net_id_read(ioc_str, tim_net_json):
 
 
 def main(args={}, interface={}):
-    print("INFO", __file__)
+    logging.info(__file__)
     # Get the script root location
     # root = __file__.replace(os.path.basename(__file__), "")
     # root = "."
