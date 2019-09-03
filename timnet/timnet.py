@@ -17,8 +17,11 @@ def main():
     assure_py3()
     # Check epics
     logging.info("epics " + str(epics.ca.find_libca()))
+
     # Get the cli params
     cli_params = menu()
+    if cli_params["manual"]:
+        print(open('README.md').read())
     param_net = cli_params["net"]
     param_plot = cli_params["plot"]
     # declare meta list to log the program progress
