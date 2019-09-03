@@ -8,6 +8,7 @@ from menu import *
 # Local runtime modules
 import tnet
 import tplot
+import tcheck
 # =========================================
 
 
@@ -18,17 +19,19 @@ def main():
     # Check epics
     logging.info("epics " + str(epics.ca.find_libca()))
 
+    # Interface
+    interface = {"dir": "json/", "inventory": "inventory.json", "network": "network.json", "plot": "plot.json", "check": "check.json"}
+
     # Get the cli params
     cli_params = menu()
     if cli_params["manual"]:
         print(open('README.md').read())
     param_net = cli_params["net"]
     param_plot = cli_params["plot"]
+    param_check = cli_params["check"]
     # declare meta list to log the program progress
 
-    interface = {"dir": "json/", "inventory": "inventory.json", "network": "network.json", "plot": "plot.json"}
-
-    if "dev" in cli_params:
+    if cli_params["dev"] is True:
         for el in interface:
             interface[el] = interface[el].replace(".json", "_dev.json")
 
@@ -38,6 +41,8 @@ def main():
         tnet.main(cli_params, interface)
     if param_plot:
         tplot.main(cli_params, interface)
+    if param_check:
+        tcheck.main(cli_params, interface)
 
 
 if __name__ == '__main__':

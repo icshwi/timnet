@@ -12,7 +12,33 @@ Each device in the timing system is given an unique identifier, the Topology ID.
 * Timing network monitoring
 
 # Usage
-* python -m timnet
-* Use "--help or -h" for all parameters or check menu.py
+* Define the inventory.json
+* python -m timnet -h
 * Output inside ./json
 * Plot ./json with https://vanya.jp.net/vtree/
+
+# Examples
+* Read the timing network distribution:
+
+```
+input: inventory.json
+output: network.json
+python -m timnet --net
+```
+* Plot the network
+
+```
+input: network.json
+output: plot.json
+python -m timnet --plot
+```
+* Check errors
+
+```
+input: check.json, network.json
+output: console
+python -m timnet --check
+```
+* All together
+
+python -m timnet --net --plot --check
