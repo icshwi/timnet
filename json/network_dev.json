@@ -17,6 +17,17 @@
     "Time-Valid": 1,
     "Pos": "a:0.0 slot=2-1"
   },
+  "MTCA5U-EVR7": {
+    "ID": 7,
+    "HwType": "mTCA-EVR-300",
+    "FwVer": "207.e",
+    "SwVer": "2.2.0-devel",
+    "Ena-Sel": 1,
+    "Pll-Sts": 1,
+    "Time": "Mon, 02 Sep 2019 13:25:34 +0200",
+    "Time-Valid": 1,
+    "Pos": "a:0.0 slot=2-1"
+  },
   "MTCA5U-EVR1": {
     "ID": 50,
     "HwType": "mTCA-EVR-300",

@@ -37,16 +37,16 @@ def net_node_add(ioc_str, tim_net_json, level):
     id_tmp = tim_net_json[ioc_str]["ID"][::-1]
     if int(id_tmp[level]) != 0 and int(id_tmp[level+1]) == 0:
         if "EVR" in ioc_str:
-            dev_tmp = evr_const
+            dev_tmp = evr_const.copy()
         else:
-            dev_tmp = evm_const
+            dev_tmp = evm_const.copy()
         dev_tmp["dev"] = ioc_str
         dev_tmp["id"] = hex2short(tim_net_json[ioc_str]["ID"])
         if net_plot[int(id_tmp[level])] == {}:
-            net_plot[int(id_tmp[level])] = dev_tmp
+            net_plot[int(id_tmp[level])] = dev_tmp.copy()
         else:
-            net_plot[int(id_tmp[level])][int(id_tmp[level-1])] = dev_tmp
-        #dev_tmp.clear()
+            net_plot[int(id_tmp[level])][int(id_tmp[level-1])] = dev_tmp.copy()
+        dev_tmp.clear()
 
 
 def del_none(d):
