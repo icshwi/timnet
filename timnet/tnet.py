@@ -93,19 +93,19 @@ def tim_net_id_read(ioc_str, tim_net_json):
                 break
 
 
-def main(args={}, interface={}):
+def main(args={"input": "", "output": ""}):
     logging.info(__file__)
     # Get the script root location
     # root = __file__.replace(os.path.basename(__file__), "")
     # root = "."
 
-    with open(interface["dir"]+interface["input"]) as infile:
+    with open(args["input"]) as infile:
         tim_net_json = json.load(infile)
 
     for ioc_str in tim_net_json:
         tim_net_id_read(ioc_str, tim_net_json)
 
-    with open(interface["dir"]+interface["output"], 'w') as outfile:
+    with open(args["output"], 'w') as outfile:
         json.dump(tim_net_json, outfile)
 
     logging.info(tim_net_json)

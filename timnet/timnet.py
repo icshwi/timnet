@@ -9,6 +9,8 @@ from menu import *
 import tnet
 import tplot
 import tcheck
+
+
 # =========================================
 
 
@@ -38,7 +40,7 @@ def main():
     logging.info("cli_params " + str(cli_params))
     logging.info("interface " + str(interface))
     if param_net:
-        tnet.main(cli_params, interface)
+        tnet.main({"input": interface["dir"] + interface["inventory"], "output": interface["dir"] + interface["network"]})
     if param_plot:
         tplot.main(cli_params, interface)
     if param_check:
