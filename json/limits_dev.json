@@ -1,0 +1,10 @@
+
+{
+   "SFP-T":  {"min": 20 , "max": 50},
+   "SFP-Pwr-RX":  {"min": 300 , "max": 500},
+   "SFP-Pwr-TX": {"min": 300 , "max": 500},
+   "Link-Sts" : {"eq": 1},
+   "Pll-Sts" : {"eq": 1},
+   "Time-Valid" : {"eq": 1},
+   "Ena-Sel" : {"eq": 1}
+}

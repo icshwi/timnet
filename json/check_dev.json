@@ -1,7 +1,0 @@
-
-{
-   "SFP-T":  {"min": 30 , "max": 50},
-   "SFP-Pwr-RX":  {"min": 300 , "max": 500},
-   "SFP-Pwr-TX": {"min": 300 , "max": 500},
-   "Link-Sts" : {"eq": 1}
-}

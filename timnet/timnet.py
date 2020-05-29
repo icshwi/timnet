@@ -22,7 +22,7 @@ def main():
     logging.info("epics " + str(epics.ca.find_libca()))
 
     # Interface
-    interface = {"dir": "json/", "inventory": "inventory.json", "network": "network.json", "plot": "plot.json", "check": "check.json"}
+    interface = {"dir": "json/", "inventory": "inventory.json", "network": "network.json", "plot": "plot.json", "limits": "limits.json"}
 
     # Get the cli params
     cli_params = menu()
@@ -40,11 +40,11 @@ def main():
     logging.info("cli_params " + str(cli_params))
     logging.info("interface " + str(interface))
     if param_net:
-        tnet.main({"input": interface["dir"] + interface["inventory"], "output": interface["dir"] + interface["network"]})
+        tnet.main(inventory_jl=interface["dir"] + interface["inventory"], network_jl=interface["dir"] + interface["network"])
     if param_plot:
-        tplot.main(cli_params, interface)
+        tplot.main(network_jl=interface["dir"] + interface["network"], plot_jl=interface["dir"] + interface["plot"])
     if param_check:
-        tcheck.main(cli_params, interface)
+        tcheck.main(network_jl=interface["dir"] + interface["network"], limits_jl=interface["dir"] + interface["limits"])
 
 
 if __name__ == '__main__':

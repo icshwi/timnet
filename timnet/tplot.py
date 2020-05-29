@@ -59,10 +59,10 @@ def hex2short(arg_str):
     return hex(int(arg_str, 16))
 
 
-def main(args={}, interface={}):
+def main(network_jl, plot_jl):
     logging.info(__file__)
 
-    with open(interface["dir"]+interface["network"]) as infile:
+    with open(network_jl) as infile:
         tim_net_json = json.load(infile)
 
     for ioc_str in tim_net_json:
@@ -85,7 +85,7 @@ def main(args={}, interface={}):
         for ioc_str in tim_net_json:
             net_node_add(ioc_str, tim_net_json, lv)
 
-    with open(interface["dir"]+interface["plot"], 'w') as outfile:
+    with open(plot_jl, 'w') as outfile:
         json.dump(net_plot, outfile)
 
     logging.info(net_plot)

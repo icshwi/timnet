@@ -43,16 +43,20 @@ def check_network(check_json, network_json):
     return output
 
 
-def main(args={}, interface={}):
+def main(network_jl, limits_jl, output_jl="json/errors_dev.json"):
     logging.info(__file__)
 
-    with open(interface["dir"]+interface["network"]) as infile:
+    with open(network_jl) as infile:
         network_json = json.load(infile)
 
-    with open(interface["dir"]+interface["check"]) as infile:
-        check_json = json.load(infile)
+    with open(limits_jl) as infile:
+        limits_json = json.load(infile)
 
-    out = check_network(check_json, network_json)
+    out = check_network(limits_json, network_json)
+
+    with open(output_jl, 'w') as outfile:
+        json.dump(out, outfile)
+
     logging.info(out)
 
 
