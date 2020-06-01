@@ -77,10 +77,10 @@ def tim_net_id_read(ioc_str, tim_net_json):
 
         pv_str_tmp = netpvs[pv_str][dev_type]
         if pv_str_tmp != "":
-            if ':' in pv_str_tmp:
-                eps_req_str = ioc_str + pv_str_tmp
-            else:
-                eps_req_str = ioc_str + ":" + pv_str_tmp
+            #if ':' in pv_str_tmp:
+            #    eps_req_str = ioc_str + pv_str_tmp
+            #else:
+            eps_req_str = ioc_str + ":" + pv_str_tmp
             pv_val_tmp = epics.PV(eps_req_str, connection_timeout=1).value
         else:
             pv_val_tmp = ""

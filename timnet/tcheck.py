@@ -43,7 +43,7 @@ def check_network(check_json, network_json):
     return output
 
 
-def main(network_jl, limits_jl, output_jl="json/errors_dev.json"):
+def main(network_jl, limits_jl, output_jl):
     logging.info(__file__)
 
     with open(network_jl) as infile:

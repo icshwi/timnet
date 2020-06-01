@@ -28,15 +28,15 @@ def main():
 
     # Interface
     interface = {"inventory": cli_params.inventory,
-                 "network": cli_params.inventory.replace(".json", "_net.json"),
-                 "plot": cli_params.inventory.replace(".json", "_plot.json"),
-                 "limits": "json/limits.json",
-                 "errors": cli_params.inventory.replace(".json", "_err.json")
+                 "network": cli_params.inventory.replace(".", "_net."),
+                 "plot": cli_params.inventory.replace(".", "_plot."),
+                 "limits": "inventory/limits.json",
+                 "errors": cli_params.inventory.replace(".", "_err.")
                  }
 
     if cli_params.dev:
         for el in interface:
-            interface[el] = interface[el].replace(".json", "_dev.json")
+            interface[el] = interface[el].replace(".", "_dev.")
 
     # declare meta list to log the program progress
     logging.info("cli_params " + str(cli_params))
