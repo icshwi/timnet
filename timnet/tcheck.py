@@ -3,6 +3,8 @@
 
 import logging
 import json
+
+from genericlibs import *
 from string import digits
 
 
@@ -19,8 +21,11 @@ def assert_check(check, network):
             return 0
         else:
             return "ERROR EQ " + str(check["eq"]) + "!=" + str(network)
+    # Ignore negative values (they are not set)
+    if network <= 0:
+        return 0
     # network == 0 if the socket is not connected
-    if check["min"] < network or network == 0:
+    if check["min"] < network:
         if check["max"] > network:
             return 0
         else:
@@ -30,7 +35,7 @@ def assert_check(check, network):
 
 
 def check_network(check_json, network_json):
-    output = []
+    result_dict_tmp = {}
     for ioc_str in network_json:
         for rec_net_str in network_json[ioc_str]:
             for rec_check_str in check_json:
@@ -38,9 +43,9 @@ def check_network(check_json, network_json):
                 if rec_check_str == rm_dig(rec_net_str):
                     result_tmp = assert_check(check_json[rec_check_str], network_json[ioc_str][rec_net_str])
                     if result_tmp != 0:
-                        result_dict_tmp = [ioc_str, rec_net_str, result_tmp]
-                        output.append(result_dict_tmp)
-    return output
+                        dict2d_append(result_dict_tmp, [ioc_str, rec_net_str, result_tmp])
+
+    return result_dict_tmp
 
 
 def main(network_jl, limits_jl, output_jl):

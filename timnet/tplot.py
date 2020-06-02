@@ -30,18 +30,26 @@ evr_const = {
 }
 
 net_plot = {}
+net_plot_nc = {}
 
 
 def net_node_add(ioc_str, tim_net_json, level):
     # print(tim_net_json[ioc_str]["ID"][-2])
+    _id_int = int(tim_net_json[ioc_str]["ID"])
     id_tmp = tim_net_json[ioc_str]["ID"][::-1]
+
+    if "EVR" in ioc_str:
+        dev_tmp = evr_const.copy()
+    else:
+        dev_tmp = evm_const.copy()
+    dev_tmp["dev"] = ioc_str
+    dev_tmp["id"] = hex2short(tim_net_json[ioc_str]["ID"])
+
+    if _id_int < 0:
+        net_plot_nc[dev_tmp["dev"]] = dev_tmp.copy()
+        return -1
+
     if int(id_tmp[level]) != 0 and int(id_tmp[level+1]) == 0:
-        if "EVR" in ioc_str:
-            dev_tmp = evr_const.copy()
-        else:
-            dev_tmp = evm_const.copy()
-        dev_tmp["dev"] = ioc_str
-        dev_tmp["id"] = hex2short(tim_net_json[ioc_str]["ID"])
         if net_plot[int(id_tmp[level])] == {}:
             net_plot[int(id_tmp[level])] = dev_tmp.copy()
         else:
@@ -77,8 +85,8 @@ def main(network_jl, plot_jl):
             net_plot.update(evm_tmp)
             break
 
-    if net_plot == {}:
-        raise Exception("No EVG detected")
+    #if net_plot == {}:
+    #    raise Exception("No EVG detected")
 
     # Build the network plot
     for lv in range(0, 8):
@@ -86,7 +94,7 @@ def main(network_jl, plot_jl):
             net_node_add(ioc_str, tim_net_json, lv)
 
     with open(plot_jl, 'w') as outfile:
-        json.dump(net_plot, outfile)
+        json.dump({**net_plot, **net_plot_nc}, outfile)
 
     logging.info(net_plot)
 

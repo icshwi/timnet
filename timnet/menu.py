@@ -13,6 +13,7 @@ def menu():
     parser.add_argument("-d", "--dev", action='store_true', help="Apply devel settings - *_dev files.")
     parser.add_argument("-c", "--check", action='store_true', help="Checks the timing network anomalies.")
     parser.add_argument("-m", "--manual", action='store_true', help="Print the application manual.")
+    parser.add_argument("--pvs", action='store', default="inventory/pvs.json", help="Use this PV set for the network evaluation.")
     parser.add_argument("-f", "--inventory", action='store', default="inventory/example.json", help="Network inventory with the PV prefixes.")
     args = parser.parse_args()
     if args.verbosity >= 2:

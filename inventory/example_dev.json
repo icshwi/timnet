@@ -1,8 +1,7 @@
 
 {
-   "L5U1-EVG1:":  {},
-   "L5U1-EVM1:":  {},
-   "L5U1-EVR0:":  {},
-   "L5U1-EVR1:":  {},
-   "L5U1-EVR2:":  {}
+   "TD-L3U1:Ctrl-EVG-1:":  {},
+   "TD-L3U1:Ctrl-EVM-1:":  {},
+   "TD-L3U1:Ctrl-EVM-2:":  {},
+   "TD-L3U1:Ctrl-EVR-1:":  {}
 }

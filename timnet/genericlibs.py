@@ -6,7 +6,7 @@ import sys
 import os
 #import socket
 #import math
-#import epics
+import epics
 
 
 def assure_py3():
@@ -93,3 +93,9 @@ def pv_write(pv_str, value):
 #     tmp_str = s.getsockname()[0]
 #     s.close()
 #     return str(tmp_str)
+
+def dict2d_append(argd={}, args=[]):
+    if args[0] in argd:
+        argd[args[0]][args[1]] = args[2]
+    else:
+        argd[args[0]] = {args[1]: args[2]}

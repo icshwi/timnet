@@ -1,1 +1,9 @@
-[["L5U1-EVG1:", "Ena-Sel", "ERROR EQ 1!=2"], ["L5U1-EVR1:", "SFP-Pwr-TX", "ERROR MIN 300>212.5"]]
+{
+  "TD-L3U1:Ctrl-EVG-1:": {
+    "Ena-Sel": "ERROR EQ 1!=2"
+  },
+  "TD-L3U1:Ctrl-EVR-1:": {
+    "Time-Valid": "ERROR EQ 1!=0",
+    "Link-Sts": "ERROR EQ 1!=0"
+  }
+}

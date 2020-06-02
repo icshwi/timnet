@@ -31,6 +31,7 @@ def main():
                  "network": cli_params.inventory.replace(".", "_net."),
                  "plot": cli_params.inventory.replace(".", "_plot."),
                  "limits": "inventory/limits.json",
+                 "pvs": cli_params.pvs,
                  "errors": cli_params.inventory.replace(".", "_err.")
                  }
 
@@ -42,7 +43,7 @@ def main():
     logging.info("cli_params " + str(cli_params))
     logging.info("interface " + str(interface))
     if cli_params.net:
-        tnet.main(inventory_jl=interface["inventory"], network_jl=interface["network"])
+        tnet.main(inventory_jl=interface["inventory"], network_jl=interface["network"], pvs_jl=interface["pvs"])
     if cli_params.plot:
         tplot.main(network_jl=interface["network"], plot_jl=interface["plot"])
     if cli_params.check:
