@@ -17,26 +17,19 @@ def rm_dig(arg_str):
 def assert_check(check, network):
     # print(check, network)
     if 'eq' in check:
-        if check["eq"] == network:
-            return 0
-        else:
+        if check["eq"] != network:
             return "ERROR EQ " + str(check["eq"]) + "!=" + str(network)
     if 'neq' in check:
-        if check["neq"] != network:
-            return 0
-        else:
+        if check["neq"] == network:
             return "ERROR NEQ " + str(check["neq"]) + "==" + str(network)
     # Ignore negative values (they are not set)
-    if network <= 0:
-        return 0
-    # network == 0 if the socket is not connected
-    if check["min"] < network:
-        if check["max"] > network:
-            return 0
-        else:
+    # network == 0 if it is not connected
+    if "min" in check and network > 0:
+        if check["min"] > network:
+            return "ERROR MIN " + str(check["min"]) + ">" + str(network)
+    if "max" in check and network > 0:
+        if check["max"] < network:
             return "ERROR MAX " + str(check["max"]) + "<" + str(network)
-    else:
-        return "ERROR MIN " + str(check["min"]) + ">" + str(network)
 
 
 def check_network(limits_json, network_json):
@@ -49,7 +42,7 @@ def check_network(limits_json, network_json):
                         #assert_check(rec_check_str, rec_net_str, check_json, network_json[prefix_str])
                         if pv_check_str == rm_dig(pvi_str):
                             result_tmp = assert_check(limits_json[devi_str][pv_check_str], network_json[prefix_str][pvi_str])
-                            if result_tmp != 0:
+                            if result_tmp:
                                 dict2d_append(_result_dict, [prefix_str, pvi_str, result_tmp])
 
     return _result_dict
