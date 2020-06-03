@@ -39,18 +39,20 @@ def assert_check(check, network):
         return "ERROR MIN " + str(check["min"]) + ">" + str(network)
 
 
-def check_network(check_json, network_json):
-    result_dict_tmp = {}
-    for ioc_str in network_json:
-        for rec_net_str in network_json[ioc_str]:
-            for rec_check_str in check_json:
-                #assert_check(rec_check_str, rec_net_str, check_json, network_json[ioc_str])
-                if rec_check_str == rm_dig(rec_net_str):
-                    result_tmp = assert_check(check_json[rec_check_str], network_json[ioc_str][rec_net_str])
-                    if result_tmp != 0:
-                        dict2d_append(result_dict_tmp, [ioc_str, rec_net_str, result_tmp])
+def check_network(limits_json, network_json):
+    _result_dict = {}
+    for devi_str in limits_json:
+        for prefix_str in network_json:
+            if devi_str in prefix_str:
+                for pvi_str in network_json[prefix_str]:
+                    for pv_check_str in limits_json[devi_str]:
+                        #assert_check(rec_check_str, rec_net_str, check_json, network_json[prefix_str])
+                        if pv_check_str == rm_dig(pvi_str):
+                            result_tmp = assert_check(limits_json[devi_str][pv_check_str], network_json[prefix_str][pvi_str])
+                            if result_tmp != 0:
+                                dict2d_append(_result_dict, [prefix_str, pvi_str, result_tmp])
 
-    return result_dict_tmp
+    return _result_dict
 
 
 def main(network_jl, limits_jl, output_jl):

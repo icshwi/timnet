@@ -1,1 +1,1 @@
-{"L5U1-EVG1:": {"Ena-Sel": "ERROR EQ 1!=2"}, "L5U1-EVR1:": {"SFP-Pwr-TX": "ERROR MIN 300>210.29999999999998"}}
+{"L5U1-EVR1:": {"FwVer-I": "ERROR EQ 207.e!=207.7", "SFP-Pwr-TX-I": "ERROR MIN 300>210.29999999999998"}, "L5U1-EVR2:": {"FwVer-I": "ERROR EQ 207.e!=207.7"}, "L5U1-EVM1:": {"EVRU-Link-Sts": "ERROR EQ 1!=None"}, "L5U1-EVG1:": {"EVRU-Link-Sts": "ERROR EQ 1!=None"}}
