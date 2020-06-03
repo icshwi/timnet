@@ -9,31 +9,14 @@ from genericlibs import *
 from genericepics import *
 # local runtime functions
 
-# =========================================
-# START
-# =========================================
 
-
-def tim_net_id_read(ioc_str, tim_net_json):
-    for pv_str in netpvs:
-        if "EVR" in ioc_str:
-            dev_type = "EVR"
-        else:
-            dev_type = "EVM"
-
-        pv_str_tmp = netpvs[pv_str][dev_type]
-        if pv_str_tmp != "":
-            eps_req_str = ioc_str + pv_str_tmp
-            pv_val_tmp = epics.PV(eps_req_str, connection_timeout=1).value
-        else:
-            pv_val_tmp = ""
-
-        if pv_val_tmp != "":
-            if pv_val_tmp is not None:
-                tim_net_json[ioc_str].update({pv_str: pv_val_tmp})
-            else:
-                tim_net_json[ioc_str].update({"state": "FAULT"})
-                break
+def tim_net_id_read(prefix_str, tim_net_json):
+    for devi_str in netpvs:
+        if devi_str in prefix_str:
+            for pvi_str in netpvs[devi_str]:
+                _pv_str = prefix_str + pvi_str
+                _pv_val = epics.PV(_pv_str, connection_timeout=1).value
+                tim_net_json[prefix_str].update({pvi_str: _pv_val})
 
 
 def main(inventory_jl, network_jl, pvs_jl):
@@ -48,8 +31,8 @@ def main(inventory_jl, network_jl, pvs_jl):
     with open(inventory_jl) as infile:
         tim_net_json = json.load(infile)
 
-    for ioc_str in tim_net_json:
-        tim_net_id_read(ioc_str, tim_net_json)
+    for prefix_str in tim_net_json:
+        tim_net_id_read(prefix_str, tim_net_json)
 
     with open(network_jl, 'w') as outfile:
         json.dump(tim_net_json, outfile)
