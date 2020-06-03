@@ -6,5 +6,6 @@
    "Link-Sts" : {"eq": 1},
    "Pll-Sts" : {"eq": 1},
    "Time-Valid" : {"eq": 1},
-   "Ena-Sel" : {"eq": 1}
+   "Ena-Sel" : {"eq": 1},
+   "ID" : {"neq": -1}
 }

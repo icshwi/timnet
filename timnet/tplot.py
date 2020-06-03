@@ -85,8 +85,8 @@ def main(network_jl, plot_jl):
             net_plot.update(evm_tmp)
             break
 
-    #if net_plot == {}:
-    #    raise Exception("No EVG detected")
+    if net_plot == {}:
+        raise Exception("ERROR EVG not detected")
 
     # Build the network plot
     for lv in range(0, 8):

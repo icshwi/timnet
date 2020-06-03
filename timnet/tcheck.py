@@ -21,6 +21,11 @@ def assert_check(check, network):
             return 0
         else:
             return "ERROR EQ " + str(check["eq"]) + "!=" + str(network)
+    if 'neq' in check:
+        if check["neq"] != network:
+            return 0
+        else:
+            return "ERROR NEQ " + str(check["neq"]) + "==" + str(network)
     # Ignore negative values (they are not set)
     if network <= 0:
         return 0
