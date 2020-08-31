@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Global modules
+import os
+
 import logging
 from genericlibs import *
 from genericepics import *
 from menu import *
-
-import os
-# tn
-#os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.85"
-# lab
-os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.92"
-print("EPICS_CA_ADDR_LIST" + " " + os.environ['EPICS_CA_ADDR_LIST'])
 
 # Local runtime modules
 import tnet
@@ -27,6 +24,13 @@ def main():
     assure_py3()
     # Check epics
     logging.info("epics " + str(epics.ca.find_libca()))
+    # tn
+    # os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.85"
+    # lab
+    os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.92"
+    os.environ["EPICS_CA_AUTO_ADDR_LIST"] = "NO"
+    logging.info("EPICS_CA_ADDR_LIST" + " " + os.environ['EPICS_CA_ADDR_LIST'])
+    logging.info("EPICS_CA_AUTO_ADDR_LIST" + " " + os.environ['EPICS_CA_AUTO_ADDR_LIST'])
 
     # Get the cli params
     cli_params = menu()
