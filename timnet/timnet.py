@@ -25,9 +25,9 @@ def main():
     # Check epics
     logging.info("epics " + str(epics.ca.find_libca()))
     # tn
-    # os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.85"
+    os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.85"
     # lab
-    os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.92"
+    # os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.92"
     os.environ["EPICS_CA_AUTO_ADDR_LIST"] = "NO"
     logging.info("EPICS_CA_ADDR_LIST" + " " + os.environ['EPICS_CA_ADDR_LIST'])
     logging.info("EPICS_CA_AUTO_ADDR_LIST" + " " + os.environ['EPICS_CA_AUTO_ADDR_LIST'])
