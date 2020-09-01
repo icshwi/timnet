@@ -9,13 +9,12 @@ from string import digits
 
 
 # Remove not necessary digits from strings - comparison purposes
-def rm_dig(arg_str):
-    #return ''.join(filter(lambda x: x.isalpha(), arg_str))
-    return ''.join(filter(lambda x: not x.isdigit(), arg_str))
+# def rm_dig(arg_str):
+#     #return ''.join(filter(lambda x: x.isalpha(), arg_str))
+#     return ''.join(filter(lambda x: not x.isdigit(), arg_str))
 
 
 def assert_check(check, network):
-    # print(check, network)
     if 'eq' in check:
         if check["eq"] != network:
             return "ERROR EQ " + str(check["eq"]) + "!=" + str(network)
@@ -40,7 +39,8 @@ def check_network(limits_json, network_json):
                 for pvi_str in network_json[prefix_str]:
                     for pv_check_str in limits_json[devi_str]:
                         #assert_check(rec_check_str, rec_net_str, check_json, network_json[prefix_str])
-                        if pv_check_str == rm_dig(pvi_str):
+                        #if pv_check_str == rm_dig(pvi_str):
+                        if pv_check_str == pvi_str:
                             result_tmp = assert_check(limits_json[devi_str][pv_check_str], network_json[prefix_str][pvi_str])
                             if result_tmp:
                                 dict2d_append(_result_dict, [prefix_str, pvi_str, result_tmp])
