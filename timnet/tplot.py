@@ -97,7 +97,8 @@ def main(network_jl, plot_jl):
             net_node_add(prefix_str, tim_net_json, lv)
 
     with open(plot_jl, 'w') as outfile:
-        json.dump({**net_plot, **net_plot_nc}, outfile)
+        #json.dump({**net_plot, **net_plot_nc}, outfile)
+        outfile.write(json.dumps({**net_plot, **net_plot_nc}, indent=4))
 
     logging.info(net_plot)
 

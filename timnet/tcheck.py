@@ -60,7 +60,7 @@ def main(network_jl, limits_jl, output_jl):
     out = check_network(limits_json, network_json)
 
     with open(output_jl, 'w') as outfile:
-        json.dump(out, outfile)
+        outfile.write(json.dumps(out, indent=4))
 
     logging.info(out)
 

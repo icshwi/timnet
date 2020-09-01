@@ -35,7 +35,7 @@ def main(inventory_jl, network_jl, pvs_jl):
         tim_net_id_read(prefix_str, tim_net_json)
 
     with open(network_jl, 'w') as outfile:
-        json.dump(tim_net_json, outfile)
+        outfile.write(json.dumps(tim_net_json, indent=4))
 
     logging.info(tim_net_json)
 
