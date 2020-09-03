@@ -23,7 +23,7 @@ def main():
     # Assure py3
     assure_py3()
     # Check epics
-    logging.info("epics " + str(epics.ca.find_libca()))
+    logging.info("libca " + str(epics.ca.find_libca()))
     # tn
     os.environ["EPICS_CA_ADDR_LIST"] = "10.0.16.85"
     # lab
