@@ -50,10 +50,24 @@ def net_node_add(prefix_str, tim_net_json, level):
         return -1
 
     if int(_id_hex_str[level]) != 0 and int(_id_hex_str[level+1]) == 0:
-        if net_plot[int(_id_hex_str[level])] == {}:
+        if {} == net_plot[int(_id_hex_str[level])]:
             net_plot[int(_id_hex_str[level])] = _dev.copy()
-        else:
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level-1])]:
             net_plot[int(_id_hex_str[level])][int(_id_hex_str[level-1])] = _dev.copy()
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])]:
+            net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])] = _dev.copy()
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])]:
+            net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])] = _dev.copy()
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])]:
+            net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])] = _dev.copy()
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])]:
+            net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])] = _dev.copy()
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])][int(_id_hex_str[level - 6])]:
+            net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])][int(_id_hex_str[level - 6])] = _dev.copy()
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])][int(_id_hex_str[level - 6])][int(_id_hex_str[level - 7])]:
+            net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])][int(_id_hex_str[level - 6])][int(_id_hex_str[level - 7])] = _dev.copy()
+        elif {} == net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])][int(_id_hex_str[level - 6])][int(_id_hex_str[level - 7])][int(_id_hex_str[level - 8])]:
+            net_plot[int(_id_hex_str[level])][int(_id_hex_str[level - 1])][int(_id_hex_str[level - 2])][int(_id_hex_str[level - 3])][int(_id_hex_str[level - 4])][int(_id_hex_str[level - 5])][int(_id_hex_str[level - 6])][int(_id_hex_str[level - 7])][int(_id_hex_str[level - 8])] = _dev.copy()
         _dev.clear()
 
 

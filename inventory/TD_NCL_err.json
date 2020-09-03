@@ -1,12 +1,11 @@
 {
     "TD-M:Ctrl-EVM-1:": {
-        "SFP2-Pwr-RX-I": "ERROR MIN 300>288.4",
-        "SFP5-Pwr-RX-I": "ERROR MIN 300>256.8",
+        "SFP3-Pwr-RX-I": "ERROR MIN 300>265.6",
         "FCT-Link6-Sts": "ERROR EQ 1!=0",
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-M:Ctrl-EVM-2:": {
-        "SFP8-Pwr-RX-I": "ERROR MAX 500<510.99999999999994",
+        "SFP8-Pwr-RX-I": "ERROR MAX 500<516.0",
         "FCT-Link1-Sts": "ERROR EQ 1!=0",
         "FCT-Link2-Sts": "ERROR EQ 1!=0",
         "FCT-Link3-Sts": "ERROR EQ 1!=0",
@@ -38,13 +37,13 @@
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-D11:Ctrl-EVM-1:": {
-        "SFP4-Pwr-RX-I": "ERROR MIN 300>277.59999999999997",
+        "SFP4-Pwr-RX-I": "ERROR MIN 300>276.6",
         "FCT-Link1-Sts": "ERROR EQ 1!=0",
         "FCT-Link2-Sts": "ERROR EQ 1!=0",
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-D11:Ctrl-EVM-2:": {
-        "SFP1-Pwr-RX-I": "ERROR MIN 300>295.29999999999995",
+        "SFP1-Pwr-RX-I": "ERROR MIN 300>296.90000000000003",
         "FCT-Link4-Sts": "ERROR EQ 1!=0",
         "FCT-Link5-Sts": "ERROR EQ 1!=0",
         "FCT-Link6-Sts": "ERROR EQ 1!=0",
@@ -96,6 +95,7 @@
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-D11:Ctrl-EVM-8:": {
+        "SFP7-Pwr-RX-I": "ERROR MIN 300>0.3",
         "FCT-Link1-Sts": "ERROR EQ 1!=0",
         "FCT-Link2-Sts": "ERROR EQ 1!=0",
         "FCT-Link3-Sts": "ERROR EQ 1!=0",
@@ -114,7 +114,6 @@
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-D11:Ctrl-EVM-10:": {
-        "SFP7-Pwr-RX-I": "ERROR MIN 300>0.3",
         "FCT-Link1-Sts": "ERROR EQ 1!=0",
         "FCT-Link2-Sts": "ERROR EQ 1!=0",
         "FCT-Link3-Sts": "ERROR EQ 1!=0",
@@ -151,7 +150,7 @@
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-D22:Ctrl-EVM-1:": {
-        "SFP8-Pwr-RX-I": "ERROR MIN 300>265.8",
+        "SFP8-Pwr-RX-I": "ERROR MIN 300>267.5",
         "FCT-Link1-Sts": "ERROR EQ 1!=0",
         "FCT-Link2-Sts": "ERROR EQ 1!=0",
         "FCT-Link3-Sts": "ERROR EQ 1!=0",
@@ -161,7 +160,7 @@
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-D22:Ctrl-EVM-2:": {
-        "SFP8-Pwr-RX-I": "ERROR MIN 300>278.9",
+        "SFP8-Pwr-RX-I": "ERROR MIN 300>279.79999999999995",
         "FCT-Link1-Sts": "ERROR EQ 1!=0",
         "FCT-Link2-Sts": "ERROR EQ 1!=0",
         "FCT-Link3-Sts": "ERROR EQ 1!=0",
@@ -198,7 +197,7 @@
         "FCT-Link7-Sts": "ERROR EQ 1!=0"
     },
     "TD-D23:Ctrl-EVM-3:": {
-        "SFP8-Pwr-RX-I": "ERROR MIN 300>278.3",
+        "SFP8-Pwr-RX-I": "ERROR MIN 300>276.7",
         "FCT-Link1-Sts": "ERROR EQ 1!=0",
         "FCT-Link2-Sts": "ERROR EQ 1!=0",
         "FCT-Link3-Sts": "ERROR EQ 1!=0",
