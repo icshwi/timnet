@@ -14,6 +14,7 @@ from genericepics import *
 evm_const = {
     "dev": "",
     "id": "",
+
     1: {},
     2: {},
     3: {},
@@ -33,6 +34,33 @@ net_plot = {}
 net_plot_nc = {}
 
 
+def _evm_add_rx(_dev, tim_net_json, prefix_str):
+    _dev["rx1"] = tim_net_json[prefix_str]["SFP1-Pwr-RX-I"]
+    _dev["rx2"] = tim_net_json[prefix_str]["SFP2-Pwr-RX-I"]
+    _dev["rx3"] = tim_net_json[prefix_str]["SFP3-Pwr-RX-I"]
+    _dev["rx4"] = tim_net_json[prefix_str]["SFP4-Pwr-RX-I"]
+    _dev["rx5"] = tim_net_json[prefix_str]["SFP5-Pwr-RX-I"]
+    _dev["rx6"] = tim_net_json[prefix_str]["SFP6-Pwr-RX-I"]
+    _dev["rx7"] = tim_net_json[prefix_str]["SFP7-Pwr-RX-I"]
+    _dev["rx8"] = tim_net_json[prefix_str]["SFP8-Pwr-RX-I"]
+    if 0 == _dev["rx1"]:
+        del _dev["rx1"]
+    if 0 == _dev["rx2"]:
+        del _dev["rx2"]
+    if 0 == _dev["rx3"]:
+        del _dev["rx3"]
+    if 0 == _dev["rx4"]:
+        del _dev["rx4"]
+    if 0 == _dev["rx5"]:
+        del _dev["rx5"]
+    if 0 == _dev["rx6"]:
+        del _dev["rx6"]
+    if 0 == _dev["rx7"]:
+        del _dev["rx7"]
+    if 0 == _dev["rx8"]:
+        del _dev["rx8"]
+
+
 def net_node_add(prefix_str, tim_net_json, level):
     # print(tim_net_json[prefix_str]["ID"][-2])
     _id_int = int(tim_net_json[prefix_str]["ID"])
@@ -40,8 +68,11 @@ def net_node_add(prefix_str, tim_net_json, level):
 
     if "EVR" in prefix_str:
         _dev = evr_const.copy()
+        _dev["rx"] = tim_net_json[prefix_str]["SFP-Pwr-RX-I"]
     else:
         _dev = evm_const.copy()
+        _evm_add_rx(_dev, tim_net_json, prefix_str)
+
     _dev["dev"] = prefix_str
     _dev["id"] = hex2short(tim_net_json[prefix_str]["ID"])
 
@@ -99,6 +130,7 @@ def main(network_jl, plot_jl):
             evm_tmp = evm_const
             evm_tmp["dev"] = prefix_str
             evm_tmp["id"] = hex2short(tim_net_json[prefix_str]["ID"])
+            _evm_add_rx(evm_tmp, tim_net_json, prefix_str)
             net_plot.update(evm_tmp)
             break
 

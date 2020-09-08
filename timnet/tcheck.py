@@ -3,6 +3,7 @@
 
 import logging
 import json
+import hjson
 
 from genericlibs import *
 from string import digits
@@ -55,7 +56,7 @@ def main(network_jl, limits_jl, output_jl):
         network_json = json.load(infile)
 
     with open(limits_jl) as infile:
-        limits_json = json.load(infile)
+        limits_json = hjson.load(infile)
 
     out = check_network(limits_json, network_json)
 
