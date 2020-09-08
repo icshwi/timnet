@@ -1,27 +1,27 @@
 {
     "TD-M:Ctrl-EVM-1:": {
-        "SFP3-Pwr-RX-I": "ERROR MIN 300>267.4"
+        "SFP3-Pwr-RX-I": "ERROR MIN 300>265.6"
     },
     "TD-M:Ctrl-EVM-2:": {
-        "SFP8-Pwr-RX-I": "ERROR MAX 500<517.8"
+        "SFP8-Pwr-RX-I": "ERROR MAX 500<516.0"
     },
     "TD-D11:Ctrl-EVM-1:": {
-        "SFP4-Pwr-RX-I": "ERROR MIN 300>288.79999999999995"
+        "SFP4-Pwr-RX-I": "ERROR MIN 300>299.0"
     },
     "TD-D11:Ctrl-EVM-2:": {
-        "SFP1-Pwr-RX-I": "ERROR MIN 300>293.7"
+        "SFP1-Pwr-RX-I": "ERROR MIN 300>296.2"
     },
     "TD-D21:Ctrl-EVM-1:": {
-        "SFP8-Pwr-RX-I": "ERROR MIN 300>280.4"
+        "SFP8-Pwr-RX-I": "ERROR MIN 300>284.2"
     },
     "TD-D21:Ctrl-EVM-2:": {
-        "SFP8-Pwr-RX-I": "ERROR MIN 300>291.5"
+        "SFP8-Pwr-RX-I": "ERROR MIN 300>293.5"
     },
     "TD-D22:Ctrl-EVM-1:": {
-        "SFP8-Pwr-RX-I": "ERROR MIN 300>253.7"
+        "SFP8-Pwr-RX-I": "ERROR MIN 300>254.4"
     },
     "TD-D23:Ctrl-EVM-3:": {
-        "SFP8-Pwr-RX-I": "ERROR MIN 300>273.59999999999997"
+        "SFP8-Pwr-RX-I": "ERROR MIN 300>272.7"
     },
     "TD-M:Ctrl-EVG-1:": {
         "FCT-Link6-Sts": "ERROR EQ 1!=0",
